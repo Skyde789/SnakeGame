@@ -1,6 +1,5 @@
 from sense_hat import SenseHat, ACTION_PRESSED, ACTION_HELD, ACTION_RELEASED
 import random
-import threading
 import time
 import math
 
@@ -138,11 +137,13 @@ def PushDown(event):
 SpawnFood()
 UpdateLights()
 
+sense.stick.direction_left = PushLeft
+sense.stick.direction_up = PushUp
+sense.stick.direction_right = PushRight
+sense.stick.direction_down = PushDown
+
 while True:
-    threading.Timer(1.0, MovePlayer())
-    sense.stick.direction_left = PushLeft
-    sense.stick.direction_up = PushUp
-    sense.stick.direction_right = PushRight
-    sense.stick.direction_down = PushDown
+    MovePlayer()
+
     
         
